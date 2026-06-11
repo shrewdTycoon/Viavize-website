@@ -1,27 +1,30 @@
+import { MotionConfig } from 'framer-motion'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
-import ValueProp from './components/ValueProp'
-import Model from './components/Model'
-import Levers from './components/Levers'
-import Practices from './components/Practices'
-import Clients from './components/Clients'
-import FinalCTA from './components/FinalCTA'
+import WhatWeDo from './components/WhatWeDo'
+import Audiences from './components/Audiences'
+import Capabilities from './components/Capabilities'
+import HowWeWork from './components/HowWeWork'
+import WhyViavize from './components/WhyViavize'
+import EngagementModels from './components/EngagementModels'
+import Contact from './components/Contact'
 import Footer from './components/Footer'
 
 export default function App() {
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <Nav />
       <main>
         <Hero />
-        <ValueProp />
-        <Model />
-        <Levers />
-        <Practices />
-        <Clients />
-        <FinalCTA />
+        <WhatWeDo />
+        <Audiences />
+        <Capabilities />
+        <HowWeWork />
+        <WhyViavize />
+        <EngagementModels />
+        <Contact />
       </main>
       <Footer />
-    </>
+    </MotionConfig>
   )
 }

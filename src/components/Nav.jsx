@@ -13,9 +13,11 @@ export default function Nav() {
   }, [])
 
   const links = [
-    { label: 'Practices', href: '#practices' },
-    { label: 'The Model', href: '#model' },
-    { label: 'Clients', href: '#clients' },
+    { label: 'What We Do', href: '#what-we-do' },
+    { label: 'Capabilities', href: '#capabilities' },
+    { label: 'How We Work', href: '#how-we-work' },
+    { label: 'Why Viavize', href: '#why-viavize' },
+    { label: 'Insights', href: '#insights' },
   ]
 
   return (
@@ -29,11 +31,11 @@ export default function Nav() {
     >
       <div className="max-w-[1200px] mx-auto px-6 md:px-8 flex items-center justify-between h-16">
         <a href="#" className="flex-shrink-0">
-          <Logo variant="dark" className="h-7 w-auto" />
+          <Logo variant="dark" className="h-9 w-auto" />
         </a>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
           {links.map(link => (
             <a key={link.href} href={link.href}
               className="text-[13px] font-medium text-navy/70 hover:text-navy transition-colors">

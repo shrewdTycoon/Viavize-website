@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 html {
+  /* Non-static so framer-motion useScroll can measure offsets against the root */
+  position: relative;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -26,4 +28,22 @@ body {
 }
 .radar-sweep {
   animation: radarSweep 6s linear infinite;
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .radar-sweep,
+  .animate-pulse,
+  .marquee-track {
+    animation: none;
+  }
 }
