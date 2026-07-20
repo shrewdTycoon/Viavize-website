@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { useRef, useState } from 'react'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 28 },
@@ -22,7 +22,8 @@ const fadeUp = (delay = 0) => ({
  *      scope: ['Positioning', 'Copy', 'Design', 'Build'],
  *      url: 'https://livesite.com',          // or null while unlaunched
  *      image: '/images/work/client.jpg',     // full-page screenshot
- *      scrollSeconds: 18,                    // optional — slower for very tall pages
+ *      scrollSeconds: 34,                    // optional — raise for very tall pages
+ *                                            // (frames only scroll while on screen)
  *      video: null,                          // optional /videos/work/client.mp4 —
  *    }                                       // muted scroll capture; overrides the
  *                                            // scrolling screenshot when present
@@ -36,7 +37,7 @@ const projects = [
     scope: ['Positioning', 'Copy', 'Design', 'Build'],
     url: 'https://jlngrowthmanagement.com',
     image: '/images/work/jlngrowthmanagement.com.jpg',
-    scrollSeconds: 22,
+    scrollSeconds: 44,
   },
   {
     name: 'NexaIQ — Soterix Systems',
@@ -45,7 +46,7 @@ const projects = [
     scope: ['Positioning', 'Copy', 'Design', 'Build'],
     url: 'https://soterixsystems.com',
     image: '/images/work/soterixsystems.com.jpg',
-    scrollSeconds: 26,
+    scrollSeconds: 54,
   },
   {
     name: 'Alert Enterprise',
@@ -54,7 +55,7 @@ const projects = [
     scope: ['Copy', 'Design', 'Build'],
     url: 'https://alertenterprise.com',
     image: '/images/work/alertenterprise.com.jpg',
-    scrollSeconds: 20,
+    scrollSeconds: 40,
   },
   {
     name: 'STS 360',
@@ -63,14 +64,15 @@ const projects = [
     scope: ['Positioning', 'Copy', 'Design', 'Build'],
     url: 'https://sts360.com',
     image: '/images/work/sts360.com.jpg',
-    scrollSeconds: 26,
+    scrollSeconds: 54,
   },
 ]
 
 /* A tall wireframe "page" that scrolls inside the placeholder frame */
-function WireframePage() {
+function WireframePage({ playState }) {
   return (
-    <div className="page-scroll w-full p-6 flex flex-col gap-2.5" style={{ '--scroll-duration': '14s' }}>
+    <div className="page-scroll w-full p-6 flex flex-col gap-2.5"
+      style={{ '--scroll-duration': '26s', animationPlayState: playState }}>
       {/* Screen 1 — hero */}
       <div className="flex items-center justify-between mb-1">
         <div className="h-2 w-14 rounded bg-cyan/30" />
@@ -124,6 +126,12 @@ function BrowserFrame({ project }) {
   const image = imgFailed ? null : project.image
   const showVideo = project.video && !reduceMotion
 
+  // Only scroll while the frame is actually on screen — it starts at the top
+  // of the page when the visitor arrives, rather than mid-scroll.
+  const frameRef = useRef(null)
+  const inView = useInView(frameRef, { amount: 0.35 })
+  const playState = inView ? 'running' : 'paused'
+
   return (
     <div className="rounded-xl overflow-hidden border border-[rgba(0,193,255,0.15)]
       shadow-[0_12px_44px_rgba(0,14,33,0.5)] group-hover:border-[rgba(0,193,255,0.3)]
@@ -141,7 +149,7 @@ function BrowserFrame({ project }) {
       </div>
 
       {/* Preview area */}
-      <div className="scroll-frame relative aspect-[16/10] overflow-hidden"
+      <div ref={frameRef} className="scroll-frame relative aspect-[16/10] overflow-hidden"
         style={{ background: 'linear-gradient(135deg, #002040 0%, #001838 100%)' }}>
         {showVideo ? (
           <video
@@ -157,11 +165,14 @@ function BrowserFrame({ project }) {
             loading="lazy"
             onError={() => setImgFailed(true)}
             className="page-scroll block w-full h-auto min-h-full object-cover object-top"
-            style={{ '--scroll-duration': `${project.scrollSeconds || 18}s` }}
+            style={{
+              '--scroll-duration': `${project.scrollSeconds || 34}s`,
+              animationPlayState: playState,
+            }}
           />
         ) : (
           <>
-            <WireframePage />
+            <WireframePage playState={playState} />
             <span className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <span className="px-3.5 py-1.5 rounded-full text-[11px] font-medium text-white/50
                 bg-navy/70 border border-white/[0.12] backdrop-blur-sm">
