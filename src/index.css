@@ -37,13 +37,29 @@ body {
   animation: marquee 38s linear infinite;
 }
 
+/* Auto-scrolling page preview inside portfolio browser frames.
+   The frame is a size container; the tall child scrolls from top to
+   (-100% + frame height) and back, with holds at each end. */
+.scroll-frame {
+  container-type: size;
+}
+.page-scroll {
+  animation: pageScroll var(--scroll-duration, 18s) ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes pageScroll {
+  0%, 8% { transform: translateY(0); }
+  92%, 100% { transform: translateY(calc(-100% + 100cqh)); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
   .radar-sweep,
   .animate-pulse,
-  .marquee-track {
+  .marquee-track,
+  .page-scroll {
     animation: none;
   }
 }

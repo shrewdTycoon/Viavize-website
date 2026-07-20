@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 .claude/settings.local.json
+
+# Original full-size screenshot exports (optimized copies live in public/images/work)
+assets-src/

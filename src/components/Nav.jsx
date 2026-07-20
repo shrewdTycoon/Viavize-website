@@ -12,12 +12,13 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Absolute paths so section links work from capability subpages too
   const links = [
-    { label: 'What We Do', href: '#what-we-do' },
-    { label: 'Capabilities', href: '#capabilities' },
-    { label: 'How We Work', href: '#how-we-work' },
-    { label: 'Why Viavize', href: '#why-viavize' },
-    { label: 'Insights', href: '#insights' },
+    { label: 'What We Do', href: '/#what-we-do' },
+    { label: 'Capabilities', href: '/#capabilities' },
+    { label: 'How We Work', href: '/#how-we-work' },
+    { label: 'Why Viavize', href: '/#why-viavize' },
+    { label: 'Insights', href: '/#insights' },
   ]
 
   return (
@@ -30,7 +31,7 @@ export default function Nav() {
       }}
     >
       <div className="max-w-[1200px] mx-auto px-6 md:px-8 flex items-center justify-between h-16">
-        <a href="#" className="flex-shrink-0">
+        <a href="/" className="flex-shrink-0">
           <Logo variant="dark" className="h-9 w-auto" />
         </a>
 

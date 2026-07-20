@@ -132,6 +132,7 @@ const groups = [
       {
         title: 'Websites & Landing Pages',
         desc: 'Build digital experiences that communicate value clearly and guide visitors toward the next step.',
+        href: '/capabilities/websites/',
         icon: s => (
           <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
             <rect x="2" y="3" width="20" height="18" rx="2" stroke={s} strokeWidth="2"/>
@@ -208,7 +209,16 @@ export default function Capabilities() {
                         {cap.icon(STROKE[group.accent])}
                       </div>
                       <h3 className="text-[15px] font-semibold text-navy mb-2 leading-snug">{cap.title}</h3>
-                      <p className="text-[13px] text-slate leading-relaxed">{cap.desc}</p>
+                      <p className="text-[13px] text-slate leading-relaxed flex-1">{cap.desc}</p>
+                      {cap.href && (
+                        <a href={cap.href}
+                          className="group/link inline-flex items-center gap-1.5 text-[13px] font-medium
+                            text-cyan-dark mt-4"
+                        >
+                          Learn more
+                          <span className="transition-transform group-hover/link:translate-x-1">&rarr;</span>
+                        </a>
+                      )}
                     </div>
                   </motion.div>
                 ))}
