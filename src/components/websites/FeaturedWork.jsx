@@ -22,7 +22,7 @@ const fadeUp = (delay = 0) => ({
  *      scope: ['Positioning', 'Copy', 'Design', 'Build'],
  *      url: 'https://livesite.com',          // or null while unlaunched
  *      image: '/images/work/client.jpg',     // full-page screenshot
- *      scrollSeconds: 34,                    // optional — raise for very tall pages
+ *      scrollSeconds: 31,                    // optional — raise for very tall pages
  *                                            // (frames only scroll while on screen)
  *      video: null,                          // optional /videos/work/client.mp4 —
  *    }                                       // muted scroll capture; overrides the
@@ -37,7 +37,7 @@ const projects = [
     scope: ['Positioning', 'Copy', 'Design', 'Build'],
     url: 'https://jlngrowthmanagement.com',
     image: '/images/work/jlngrowthmanagement.com.jpg',
-    scrollSeconds: 44,
+    scrollSeconds: 40,
   },
   {
     name: 'NexaIQ — Soterix Systems',
@@ -46,7 +46,7 @@ const projects = [
     scope: ['Positioning', 'Copy', 'Design', 'Build'],
     url: 'https://soterixsystems.com',
     image: '/images/work/soterixsystems.com.jpg',
-    scrollSeconds: 54,
+    scrollSeconds: 49,
   },
   {
     name: 'Alert Enterprise',
@@ -55,7 +55,7 @@ const projects = [
     scope: ['Copy', 'Design', 'Build'],
     url: 'https://alertenterprise.com',
     image: '/images/work/alertenterprise.com.jpg',
-    scrollSeconds: 40,
+    scrollSeconds: 36,
   },
   {
     name: 'STS 360',
@@ -64,7 +64,7 @@ const projects = [
     scope: ['Positioning', 'Copy', 'Design', 'Build'],
     url: 'https://sts360.com',
     image: '/images/work/sts360.com.jpg',
-    scrollSeconds: 54,
+    scrollSeconds: 49,
   },
 ]
 
@@ -72,7 +72,7 @@ const projects = [
 function WireframePage({ playState }) {
   return (
     <div className="page-scroll w-full p-6 flex flex-col gap-2.5"
-      style={{ '--scroll-duration': '26s', animationPlayState: playState }}>
+      style={{ '--scroll-duration': '23s', animationPlayState: playState }}>
       {/* Screen 1 — hero */}
       <div className="flex items-center justify-between mb-1">
         <div className="h-2 w-14 rounded bg-cyan/30" />
@@ -129,7 +129,7 @@ function BrowserFrame({ project }) {
   // Only scroll while the frame is actually on screen — it starts at the top
   // of the page when the visitor arrives, rather than mid-scroll.
   const frameRef = useRef(null)
-  const inView = useInView(frameRef, { amount: 0.35 })
+  const inView = useInView(frameRef, { amount: 0.2 })
   const playState = inView ? 'running' : 'paused'
 
   return (
@@ -166,7 +166,7 @@ function BrowserFrame({ project }) {
             onError={() => setImgFailed(true)}
             className="page-scroll block w-full h-auto min-h-full object-cover object-top"
             style={{
-              '--scroll-duration': `${project.scrollSeconds || 34}s`,
+              '--scroll-duration': `${project.scrollSeconds || 31}s`,
               animationPlayState: playState,
             }}
           />
