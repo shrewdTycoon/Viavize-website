@@ -17,6 +17,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         websites: resolve(__dirname, 'capabilities/websites/index.html'),
         email: resolve(__dirname, 'capabilities/email/index.html'),
+        content: resolve(__dirname, 'capabilities/content/index.html'),
       },
     },
   },

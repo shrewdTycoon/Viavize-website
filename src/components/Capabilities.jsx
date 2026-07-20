@@ -52,6 +52,7 @@ const groups = [
       {
         title: 'Content & Thought Leadership',
         desc: 'Create useful content that builds awareness, establishes credibility, and supports customer decisions.',
+        href: '/capabilities/content/',
         icon: s => (
           <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
             <path d="M12 19l7-7 3 3-7 7-3-3z" stroke={s} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
