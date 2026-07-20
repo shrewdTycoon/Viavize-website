@@ -92,6 +92,7 @@ const groups = [
       {
         title: 'Email Marketing',
         desc: 'Develop campaigns and automated programs that nurture interest and maintain engagement.',
+        href: '/capabilities/email/',
         icon: s => (
           <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
             <rect x="2" y="4" width="20" height="16" rx="2" stroke={s} strokeWidth="2"/>

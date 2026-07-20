@@ -16,6 +16,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         websites: resolve(__dirname, 'capabilities/websites/index.html'),
+        email: resolve(__dirname, 'capabilities/email/index.html'),
       },
     },
   },
