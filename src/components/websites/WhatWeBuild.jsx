@@ -9,6 +9,15 @@ const fadeUp = (delay = 0) => ({
 
 const stroke = c => (c === 'turmeric' ? '#B8860B' : '#00C1FF')
 
+const ongoingScope = [
+  'New pages & landing pages',
+  'Campaign support',
+  'Content updates',
+  'Performance & SEO',
+  'Design & UX improvements',
+  'Analytics & reporting',
+]
+
 const buildTypes = [
   {
     title: 'Marketing Websites',
@@ -120,6 +129,49 @@ export default function WhatWeBuild() {
             </motion.div>
           ))}
         </div>
+
+        {/* Beyond the build — ongoing website management */}
+        <motion.div
+          {...fadeUp(0.1)}
+          className="mt-5 rounded-2xl p-8 md:p-10 border border-[rgba(0,193,255,0.15)]
+            shadow-[0_4px_24px_rgba(0,24,56,0.2)]"
+          style={{ background: 'linear-gradient(135deg, #002040 0%, #001838 100%)' }}
+        >
+          <div className="grid lg:grid-cols-[0.95fr_1.05fr] gap-8 lg:gap-12 items-center">
+            <div>
+              <span className="text-[11px] font-semibold uppercase tracking-[2px] text-turmeric-bright mb-3 block">
+                Beyond Launch
+              </span>
+              <h3 className="text-[22px] md:text-[24px] font-semibold text-white leading-snug mb-4">
+                We also run websites, not just build them.
+              </h3>
+              <p className="text-[14px] text-white/60 leading-relaxed mb-3">
+                A website is never really finished. For clients on an ongoing
+                engagement, we stay on after launch &mdash; adding pages, supporting
+                campaigns, keeping content current, and improving how the site
+                performs as the business changes.
+              </p>
+              <p className="text-[14px] text-white/75 leading-relaxed font-medium">
+                You get a team that already knows your positioning, so every
+                change builds on the last one.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-x-6 gap-y-3.5">
+              {ongoingScope.map(item => (
+                <div key={item} className="flex items-center gap-2.5">
+                  <span className="w-5 h-5 rounded-full bg-cyan/[0.12] border border-cyan/25
+                    flex items-center justify-center flex-shrink-0">
+                    <svg viewBox="0 0 16 16" fill="none" className="w-2.5 h-2.5">
+                      <path d="M3.5 8.5l3 3L12.5 5" stroke="#00C1FF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </span>
+                  <span className="text-[13.5px] text-white/80">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

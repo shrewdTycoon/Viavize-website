@@ -22,6 +22,7 @@ const fadeUp = (delay = 0) => ({
  *      scope: ['Positioning', 'Copy', 'Design', 'Build'],
  *      url: 'https://livesite.com',          // or null while unlaunched
  *      image: '/images/work/client.jpg',     // full-page screenshot
+ *      engagement: 'ongoing' | 'project',    // retainer vs one-time build
  *      scrollSeconds: 31,                    // optional — raise for very tall pages
  *                                            // (frames only scroll while on screen)
  *      video: null,                          // optional /videos/work/client.mp4 —
@@ -37,6 +38,7 @@ const projects = [
     scope: ['Positioning', 'Copy', 'Design', 'Build'],
     url: 'https://jlngrowthmanagement.com',
     image: '/images/work/jlngrowthmanagement.com.jpg',
+    engagement: 'project',
     scrollSeconds: 40,
   },
   {
@@ -46,6 +48,7 @@ const projects = [
     scope: ['Positioning', 'Copy', 'Design', 'Build'],
     url: 'https://soterixsystems.com',
     image: '/images/work/soterixsystems.com.jpg',
+    engagement: 'ongoing',
     scrollSeconds: 49,
   },
   {
@@ -55,6 +58,7 @@ const projects = [
     scope: ['Copy', 'Design', 'Build'],
     url: 'https://alertenterprise.com',
     image: '/images/work/alertenterprise.com.jpg',
+    engagement: 'ongoing',
     scrollSeconds: 36,
   },
   {
@@ -64,6 +68,7 @@ const projects = [
     scope: ['Positioning', 'Copy', 'Design', 'Build'],
     url: 'https://sts360.com',
     image: '/images/work/sts360.com.jpg',
+    engagement: 'project',
     scrollSeconds: 49,
   },
 ]
@@ -210,11 +215,12 @@ export default function FeaturedWork() {
             Our Work
           </span>
           <h2 className="text-[clamp(28px,3.5vw,40px)] font-semibold text-white leading-tight mb-4">
-            Websites we have delivered.
+            Websites we have built,<br className="hidden md:block" /> and websites we run.
           </h2>
-          <p className="text-[15px] text-white/55 leading-relaxed max-w-[560px]">
-            Selected website and landing page projects. Every one started with
-            positioning and ended as a live, measurable site.
+          <p className="text-[15px] text-white/55 leading-relaxed max-w-[580px]">
+            Some of this work was a focused build with a clear finish line.
+            The rest are ongoing partnerships, where we manage and grow the
+            site long after launch. Every one started with positioning.
           </p>
         </motion.div>
 
@@ -231,9 +237,23 @@ export default function FeaturedWork() {
               </div>
 
               <div className="lg:[direction:ltr]">
-                <span className="text-[11px] font-semibold uppercase tracking-[1.5px] text-turmeric-bright mb-3 block">
-                  {p.tag}
-                </span>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-3">
+                  <span className="text-[11px] font-semibold uppercase tracking-[1.5px] text-turmeric-bright">
+                    {p.tag}
+                  </span>
+                  {p.engagement && (
+                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full
+                      text-[10px] font-semibold uppercase tracking-[1px] border
+                      ${p.engagement === 'ongoing'
+                        ? 'text-turmeric-bright bg-turmeric/[0.12] border-turmeric/30'
+                        : 'text-cyan bg-cyan/[0.1] border-cyan/25'}`}
+                    >
+                      <span className={`w-1 h-1 rounded-full
+                        ${p.engagement === 'ongoing' ? 'bg-turmeric-bright' : 'bg-cyan'}`} />
+                      {p.engagement === 'ongoing' ? 'Ongoing partner' : 'Project'}
+                    </span>
+                  )}
+                </div>
                 <h3 className="text-[22px] font-semibold text-white mb-3 leading-snug">
                   {p.name}
                 </h3>
