@@ -75,6 +75,7 @@ const groups = [
       {
         title: 'SEO / AEO — Search & AI Visibility',
         desc: 'Improve how your business is discovered across search engines and other digital discovery channels.',
+        href: '/marketing/capabilities/seo/',
         icon: s => (
           <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
             <circle cx="11" cy="11" r="7" stroke={s} strokeWidth="2"/>
@@ -86,6 +87,7 @@ const groups = [
       {
         title: 'Performance Marketing — Paid Media',
         desc: 'Plan, launch, and improve paid campaigns across the channels most relevant to your audience.',
+        href: '/marketing/capabilities/paid/',
         icon: s => (
           <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
             <path d="M4 14l4-4 4 4 8-8" stroke={s} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -107,6 +109,7 @@ const groups = [
       {
         title: 'Outbound',
         desc: 'Target the right accounts with outreach that starts conversations.',
+        href: '/marketing/capabilities/outbound/',
         icon: s => (
           <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
             <path d="M22 2L11 13" stroke={s} strokeWidth="2" strokeLinecap="round"/>
