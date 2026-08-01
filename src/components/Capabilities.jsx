@@ -129,6 +129,7 @@ const groups = [
       {
         title: 'Sales Enablement',
         desc: 'Create presentations, case studies, messaging, collateral, and content that help sales teams sell more effectively.',
+        href: '/marketing/capabilities/sales-enablement/',
         icon: s => (
           <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
             <rect x="2" y="3" width="20" height="13" rx="2" stroke={s} strokeWidth="2"/>
@@ -152,6 +153,7 @@ const groups = [
       {
         title: 'Marketing Analytics',
         desc: 'Bring greater visibility to performance so teams can make better decisions about what to continue, improve, or stop.',
+        href: '/marketing/capabilities/analytics/',
         icon: s => (
           <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
             <path d="M12 20V10" stroke={s} strokeWidth="2" strokeLinecap="round"/>
@@ -163,6 +165,7 @@ const groups = [
       {
         title: 'Marketing Automation',
         desc: 'Build the workflows and systems that connect your tools, nurture leads automatically, and keep marketing running consistently as you grow.',
+        href: '/marketing/capabilities/automation/',
         icon: s => (
           <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
             <circle cx="5" cy="6" r="3" stroke={s} strokeWidth="2"/>
