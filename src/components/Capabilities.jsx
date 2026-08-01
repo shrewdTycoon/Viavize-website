@@ -20,6 +20,7 @@ const groups = [
       {
         title: 'Positioning & Messaging',
         desc: 'Clarify what you offer, who it is for, why it matters, and how it should be communicated.',
+        href: '/marketing/capabilities/positioning/',
         icon: s => (
           <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
             <circle cx="12" cy="12" r="9" stroke={s} strokeWidth="2"/>
@@ -31,6 +32,7 @@ const groups = [
       {
         title: 'Marketing Strategy',
         desc: 'Define the priorities, audiences, channels, and programs that deserve attention.',
+        href: '/marketing/capabilities/strategy/',
         icon: s => (
           <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
             <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6" stroke={s} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -41,6 +43,7 @@ const groups = [
       {
         title: 'Campaign Development',
         desc: 'Turn business priorities, launches, events, and market opportunities into focused campaigns.',
+        href: '/marketing/capabilities/campaigns/',
         icon: s => (
           <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
             <path d="M3 11l14-5v12L3 13v-2z" stroke={s} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -52,7 +55,7 @@ const groups = [
       {
         title: 'Content & Thought Leadership',
         desc: 'Create useful content that builds awareness, establishes credibility, and supports customer decisions.',
-        href: '/capabilities/content/',
+        href: '/marketing/capabilities/content/',
         icon: s => (
           <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
             <path d="M12 19l7-7 3 3-7 7-3-3z" stroke={s} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -93,7 +96,7 @@ const groups = [
       {
         title: 'Email Marketing',
         desc: 'Develop campaigns and automated programs that nurture interest and maintain engagement.',
-        href: '/capabilities/email/',
+        href: '/marketing/capabilities/email/',
         icon: s => (
           <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
             <rect x="2" y="4" width="20" height="16" rx="2" stroke={s} strokeWidth="2"/>
@@ -134,7 +137,7 @@ const groups = [
       {
         title: 'Websites & Landing Pages',
         desc: 'Build digital experiences that communicate value clearly and guide visitors toward the next step.',
-        href: '/capabilities/websites/',
+        href: '/marketing/capabilities/websites/',
         icon: s => (
           <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
             <rect x="2" y="3" width="20" height="18" rx="2" stroke={s} strokeWidth="2"/>

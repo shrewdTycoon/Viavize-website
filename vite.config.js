@@ -15,9 +15,12 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        websites: resolve(__dirname, 'capabilities/websites/index.html'),
-        email: resolve(__dirname, 'capabilities/email/index.html'),
-        content: resolve(__dirname, 'capabilities/content/index.html'),
+        websites: resolve(__dirname, 'marketing/capabilities/websites/index.html'),
+        email: resolve(__dirname, 'marketing/capabilities/email/index.html'),
+        content: resolve(__dirname, 'marketing/capabilities/content/index.html'),
+        positioning: resolve(__dirname, 'marketing/capabilities/positioning/index.html'),
+        strategy: resolve(__dirname, 'marketing/capabilities/strategy/index.html'),
+        campaigns: resolve(__dirname, 'marketing/capabilities/campaigns/index.html'),
       },
     },
   },
