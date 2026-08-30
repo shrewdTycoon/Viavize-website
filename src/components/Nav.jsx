@@ -18,7 +18,7 @@ export default function Nav() {
     { label: 'Capabilities', href: '/#capabilities' },
     { label: 'How We Work', href: '/#how-we-work' },
     { label: 'Why Viavize', href: '/#why-viavize' },
-    { label: 'Insights', href: '/#insights' },
+    { label: 'Resources', href: '/marketing/resources/product-positioning/' },
   ]
 
   return (
