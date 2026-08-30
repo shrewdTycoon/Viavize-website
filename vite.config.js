@@ -2,8 +2,20 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import { CHAPTERS } from './src/resources/positioning/chapters.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
+
+// Positioning resource: hub + one page per chapter (see chapters.js).
+const resourceInputs = {
+  resPositioningHub: resolve(__dirname, 'marketing/resources/product-positioning/index.html'),
+  ...Object.fromEntries(
+    CHAPTERS.map((c) => [
+      `res-${c.slug}`,
+      resolve(__dirname, `marketing/resources/product-positioning/${c.slug}/index.html`),
+    ]),
+  ),
+}
 
 export default defineConfig({
   plugins: [react()],
@@ -27,6 +39,7 @@ export default defineConfig({
         salesEnablement: resolve(__dirname, 'marketing/capabilities/sales-enablement/index.html'),
         analytics: resolve(__dirname, 'marketing/capabilities/analytics/index.html'),
         automation: resolve(__dirname, 'marketing/capabilities/automation/index.html'),
+        ...resourceInputs,
       },
     },
   },
