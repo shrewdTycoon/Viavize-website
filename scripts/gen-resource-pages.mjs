@@ -5,6 +5,7 @@ import { writeFileSync, mkdirSync } from 'fs'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { HUB, CHAPTERS, BASE } from '../src/resources/positioning/chapters.js'
+import { RESOURCES, RESOURCES_SEO, RESOURCES_BASE } from '../src/resources/index.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(__dirname, '..')
@@ -44,6 +45,24 @@ const crumb = (items) => ({
   itemListElement: items.map((it, i) => ({ '@type': 'ListItem', position: i + 1, name: it.name, item: it.url })),
 })
 
+// Resources library index
+{
+  const url = `${SITE}${RESOURCES_BASE}/`
+  writeFileSync(
+    resolve(ROOT, `marketing/resources/index.html`),
+    html({
+      title: RESOURCES_SEO.title, description: RESOURCES_SEO.meta, canonical: url, entry: 'resources-index-main.jsx',
+      jsonld: {
+        '@context': 'https://schema.org', '@graph': [
+          { '@type': 'CollectionPage', name: RESOURCES_SEO.h1, description: RESOURCES_SEO.meta, url },
+          { '@type': 'ItemList', itemListElement: RESOURCES.filter((r) => r.status === 'published').map((r, i) => ({ '@type': 'ListItem', position: i + 1, name: r.title, url: `${SITE}${r.url}` })) },
+          crumb([{ name: 'Home', url: SITE }, { name: 'Resources', url }]),
+        ],
+      },
+    }),
+  )
+}
+
 // Hub
 {
   const url = `${SITE}${BASE}/`
@@ -81,4 +100,4 @@ for (const c of CHAPTERS) {
   )
 }
 
-console.log(`Generated hub + ${CHAPTERS.length} chapter pages.`)
+console.log(`Generated resources index + hub + ${CHAPTERS.length} chapter pages.`)

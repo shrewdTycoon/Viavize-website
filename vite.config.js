@@ -8,6 +8,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 // Positioning resource: hub + one page per chapter (see chapters.js).
 const resourceInputs = {
+  resourcesIndex: resolve(__dirname, 'marketing/resources/index.html'),
   resPositioningHub: resolve(__dirname, 'marketing/resources/product-positioning/index.html'),
   ...Object.fromEntries(
     CHAPTERS.map((c) => [
