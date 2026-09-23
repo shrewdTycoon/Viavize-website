@@ -13,7 +13,7 @@ const inputClasses = `w-full rounded-lg bg-white/[0.06] border border-white/[0.1
 
 export default function Contact() {
   // Formspark redirects here after a successful submission
-  const redirectUrl = `${window.location.origin}/thank-you.html`
+  const redirectUrl = `${window.location.origin}/thank-you/`
 
   return (
     <section id="contact" className="relative py-28 md:py-36 overflow-hidden"

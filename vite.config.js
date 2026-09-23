@@ -9,7 +9,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 // Google Tag Manager — injected into the <head> and <body> of every built HTML
 // entry, so all current pages AND any future page added to the build get it
 // automatically. Skipped on the dev server so localhost traffic doesn't hit
-// analytics. (public/thank-you.html is static and carries the snippet inline.)
+// analytics. (Only applies to Vite HTML entries; any raw static HTML added
+// under public/ would need the snippet inline — there are none today.)
 const GTM_ID = 'GTM-PVFG5TSF'
 const gtmHead = `<!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -57,6 +58,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+        thankYou: resolve(__dirname, 'thank-you/index.html'),
         websites: resolve(__dirname, 'marketing/capabilities/websites/index.html'),
         email: resolve(__dirname, 'marketing/capabilities/email/index.html'),
         content: resolve(__dirname, 'marketing/capabilities/content/index.html'),
