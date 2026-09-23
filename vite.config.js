@@ -6,6 +6,35 @@ import { CHAPTERS } from './src/resources/positioning/chapters.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
+// Google Tag Manager — injected into the <head> and <body> of every built HTML
+// entry, so all current pages AND any future page added to the build get it
+// automatically. Skipped on the dev server so localhost traffic doesn't hit
+// analytics. (public/thank-you.html is static and carries the snippet inline.)
+const GTM_ID = 'GTM-PVFG5TSF'
+const gtmHead = `<!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','${GTM_ID}');</script>
+    <!-- End Google Tag Manager -->`
+const gtmBody = `<!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->`
+
+function gtm() {
+  return {
+    name: 'inject-gtm',
+    transformIndexHtml(html, ctx) {
+      if (ctx.server) return html // dev server: don't load GTM on localhost
+      return html
+        .replace(/(<head[^>]*>)/i, `$1\n    ${gtmHead}`)
+        .replace(/(<body[^>]*>)/i, `$1\n    ${gtmBody}`)
+    },
+  }
+}
+
 // Positioning resource: hub + one page per chapter (see chapters.js).
 const resourceInputs = {
   resourcesIndex: resolve(__dirname, 'marketing/resources/index.html'),
@@ -19,7 +48,7 @@ const resourceInputs = {
 }
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), gtm()],
   server: {
     port: Number(process.env.PORT) || 5173,
     strictPort: Boolean(process.env.PORT),
