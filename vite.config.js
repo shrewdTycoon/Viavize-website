@@ -48,31 +48,64 @@ const resourceInputs = {
   ),
 }
 
+// Every built HTML entry, keyed for Rollup. Drives both the build inputs and
+// the sitemap below, so adding a page here lists it in the sitemap too.
+const pageInputs = {
+  main: resolve(__dirname, 'index.html'),
+  thankYou: resolve(__dirname, 'thank-you/index.html'),
+  websites: resolve(__dirname, 'marketing/capabilities/websites/index.html'),
+  email: resolve(__dirname, 'marketing/capabilities/email/index.html'),
+  content: resolve(__dirname, 'marketing/capabilities/content/index.html'),
+  positioning: resolve(__dirname, 'marketing/capabilities/positioning/index.html'),
+  strategy: resolve(__dirname, 'marketing/capabilities/strategy/index.html'),
+  campaigns: resolve(__dirname, 'marketing/capabilities/campaigns/index.html'),
+  seo: resolve(__dirname, 'marketing/capabilities/seo/index.html'),
+  paid: resolve(__dirname, 'marketing/capabilities/paid/index.html'),
+  outbound: resolve(__dirname, 'marketing/capabilities/outbound/index.html'),
+  salesEnablement: resolve(__dirname, 'marketing/capabilities/sales-enablement/index.html'),
+  analytics: resolve(__dirname, 'marketing/capabilities/analytics/index.html'),
+  automation: resolve(__dirname, 'marketing/capabilities/automation/index.html'),
+  ...resourceInputs,
+}
+
+// Generate sitemap.xml at build time from the entries above, so every current
+// and future page is listed automatically. Netlify serves these directory-index
+// pages at trailing-slash URLs (the no-slash form 301-redirects), so we emit the
+// trailing-slash form. thank-you is noindex and is excluded.
+const SITE_URL = 'https://viavize.com'
+function sitemap() {
+  return {
+    name: 'generate-sitemap',
+    apply: 'build',
+    generateBundle() {
+      const lastmod = new Date().toISOString().slice(0, 10)
+      const routes = [
+        ...new Set(
+          Object.values(pageInputs)
+            .map((abs) => abs.slice(__dirname.length).replace(/\\/g, '/').replace(/index\.html$/, ''))
+            .map((r) => (r === '' ? '/' : r)),
+        ),
+      ]
+        .filter((r) => !r.startsWith('/thank-you'))
+        .sort()
+      const body = routes
+        .map((r) => `  <url>\n    <loc>${SITE_URL}${r}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`)
+        .join('\n')
+      const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`
+      this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source: xml })
+    },
+  }
+}
+
 export default defineConfig({
-  plugins: [react(), gtm()],
+  plugins: [react(), gtm(), sitemap()],
   server: {
     port: Number(process.env.PORT) || 5173,
     strictPort: Boolean(process.env.PORT),
   },
   build: {
     rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-        thankYou: resolve(__dirname, 'thank-you/index.html'),
-        websites: resolve(__dirname, 'marketing/capabilities/websites/index.html'),
-        email: resolve(__dirname, 'marketing/capabilities/email/index.html'),
-        content: resolve(__dirname, 'marketing/capabilities/content/index.html'),
-        positioning: resolve(__dirname, 'marketing/capabilities/positioning/index.html'),
-        strategy: resolve(__dirname, 'marketing/capabilities/strategy/index.html'),
-        campaigns: resolve(__dirname, 'marketing/capabilities/campaigns/index.html'),
-        seo: resolve(__dirname, 'marketing/capabilities/seo/index.html'),
-        paid: resolve(__dirname, 'marketing/capabilities/paid/index.html'),
-        outbound: resolve(__dirname, 'marketing/capabilities/outbound/index.html'),
-        salesEnablement: resolve(__dirname, 'marketing/capabilities/sales-enablement/index.html'),
-        analytics: resolve(__dirname, 'marketing/capabilities/analytics/index.html'),
-        automation: resolve(__dirname, 'marketing/capabilities/automation/index.html'),
-        ...resourceInputs,
-      },
+      input: pageInputs,
     },
   },
 })
